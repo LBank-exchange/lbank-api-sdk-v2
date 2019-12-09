@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/google/uuid"
-	"github.com/lbank-golang-api-sdk/apiservice"
+	"github.com/lbank-go-sdk-api/apiservice"
 )
 
 //http://api.lbank.info/

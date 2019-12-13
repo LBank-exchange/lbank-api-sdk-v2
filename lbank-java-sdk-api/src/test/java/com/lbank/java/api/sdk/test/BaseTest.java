@@ -1,7 +1,7 @@
 package com.lbank.java.api.sdk.test;
 
-import com.lbank.java.api.sdk.service.impl.LBankJavaApiSdkServiceImpl;
-import org.junit.Test;
+import com.lbank.java.api.sdk.constant.Contant;
+import com.lbank.java.api.sdk.service.LBankServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,12 +13,11 @@ import org.slf4j.LoggerFactory;
  **/
 public class BaseTest {
 
-    final static Logger logger = LoggerFactory.getLogger(BaseTest.class);
+    protected final static Logger logger = LoggerFactory.getLogger(BaseTest.class);
 
-    String apiKey = "";
+    /**两种加密方式进行切换*/
+    protected LBankServiceImpl service = new LBankServiceImpl(Contant.API_KEY, Contant.SECRET_KEY,Contant.SIGN_METHODS_SHA256);
 
-    String SecretKey = "";
-
-   LBankJavaApiSdkServiceImpl apiSdkService = new LBankJavaApiSdkServiceImpl(apiKey,SecretKey);
+    //protected LBankServiceImpl service = new LBankServiceImpl(Contant.API_KEY, Contant.SECRET_KEY,Contant.SIGN_METHODS_RSA);
 
 }

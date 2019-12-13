@@ -1,6 +1,6 @@
 package com.lbank.java.api.sdk.response;
 
-import com.lbank.java.api.sdk.entity.Trades;
+import com.lbank.java.api.sdk.module.Trades;
 
 import java.io.Serializable;
 import java.util.List;

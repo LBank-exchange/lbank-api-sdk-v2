@@ -1,7 +1,7 @@
 package com.lbank.java.api.sdk.response;
 
-import com.lbank.java.api.sdk.entity.Depth;
-import com.lbank.java.api.sdk.entity.TicketMessage;
+
+import com.lbank.java.api.sdk.module.Depth;
 
 import java.io.Serializable;
 import java.util.List;

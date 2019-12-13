@@ -1,10 +1,6 @@
-package com.lbank.java.api.sdk.response;
-
-
-import com.lbank.java.api.sdk.module.WithdrawPage;
+package com.lbank.java.api.sdk.module;
 
 import java.io.Serializable;
-import java.util.Map;
 
 /**
  * @program: lbank_api_v2
@@ -12,7 +8,7 @@ import java.util.Map;
  * @author: steel.cheng
  * @create: 2019-09-04 14:05
  **/
-public class ResGetWithdrawsVo implements Serializable {
+public class ResponseVo<T> implements Serializable {
 
     /**
      * 返回结果，true/false
@@ -32,7 +28,7 @@ public class ResGetWithdrawsVo implements Serializable {
     /**
      * 返回数据结构
      */
-    private WithdrawPage data;
+    private T data;
 
 
     public Boolean getResult() {
@@ -59,11 +55,11 @@ public class ResGetWithdrawsVo implements Serializable {
         this.ts = ts;
     }
 
-    public WithdrawPage getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(WithdrawPage data) {
+    public void setData(T data) {
         this.data = data;
     }
 

@@ -1,6 +1,5 @@
 package com.lbank.java.api.sdk.service;
 
-import com.lbank.java.api.sdk.entity.ResponseVo;
 import com.lbank.java.api.sdk.response.*;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -8,8 +7,6 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author steel.cheng
@@ -31,12 +28,12 @@ public interface LBankJavaApiService {
      * @param type   委托买卖类型buy/sell
      * @param price  下单价格
      * @param amount 交易数量
-     * @param customerId 自定义ID
+     * @param customId 自定义ID
      * @return
      */
     @Headers("contentType:application/x-www-form-urlencoded")
     @POST("/v2/create_order.do")
-    Call<ResCreateOrderVo> createOrder(@Query("symbol") String symbol, @Query("type") String type, @Query("price") String price, @Query("amount") String amount,@Query("customer_id") String customerId);
+    Call<ResCreateOrderVo> createOrder(@Query("symbol") String symbol, @Query("type") String type, @Query("price") String price, @Query("amount") String amount,@Query("custom_id") String customId);
 
     /**
      * 撤销订单

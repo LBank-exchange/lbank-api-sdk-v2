@@ -1,6 +1,7 @@
 package com.lbank.java.api.sdk.security;
 
-import com.lbank.java.api.sdk.util.LBankJavaApiSdkUtil;
+import com.lbank.java.api.sdk.constant.Contant;
+import com.lbank.java.api.sdk.utils.SdkUtil;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
@@ -13,6 +14,7 @@ import java.util.UUID;
 
 /**
  * Description:Http请求参数认证拦截处理
+ *
  * @return
  * @Author: steel.cheng
  * @Date: 2019/9/4-10:34 AM
@@ -20,9 +22,7 @@ import java.util.UUID;
  */
 public class AuthenticationInterceptor implements Interceptor {
     /**
-     *
      * 用户apikey
-     *
      */
     private final String apiKey;
 
@@ -31,15 +31,19 @@ public class AuthenticationInterceptor implements Interceptor {
      */
     private final String secret;
 
-    public AuthenticationInterceptor(String apiKey, String secret) {
+    private final String method;
+
+    public AuthenticationInterceptor(String apiKey, String secret, String method) {
         this.apiKey = apiKey;
         this.secret = secret;
+        this.method = method;
     }
 
     /**
      * Description:处理请求参数
+     *
      * @param chain
-     * @return 
+     * @return
      * @Author: steel.cheng
      * @Date: 2019/9/4-10:36 AM
      * @Version: 1.0
@@ -52,40 +56,58 @@ public class AuthenticationInterceptor implements Interceptor {
         String uuid = UUID.randomUUID().toString();
         //请求头Header增加三个固定参数，时间戳和签名方式和随机数（长度在30-40之间）
         Request.Builder newRequestBuilder = original.newBuilder().
-                addHeader("timestamp",times+"").
-                addHeader("echostr",uuid).
-                addHeader("signature_method","RSA");
+                addHeader("timestamp", times + "").
+                addHeader("echostr", uuid).
+                addHeader("signature_method", method);
 
         System.out.println(times);
         //参数拦截器只在非get请求中添加
-        String method = original.method();
-        if (StringUtils.equals("GET", method)) {
+        String oriMethod = original.method();
+        if (StringUtils.equals("GET", oriMethod)) {
             return chain.proceed(original);
         }
-        //加密请求参数获取数字签名
-        String payload = original.url().query();
-        //assetCode=eth&status=1&pageNo=1&pageSize=10
-        //System.out.println("payload:"+payload);
+        String sign = "";
+        if (StringUtils.equalsIgnoreCase(method, Contant.SIGN_METHODS_RSA)) {
+            //加密请求参数获取数字签名
+            String payload = original.url().query();
 
-        StringBuffer buffer = null;
-        //v2版本新增参数 timestamp/signature_method
-        if(StringUtils.isBlank(payload)) {
-            buffer = new StringBuffer();
-            buffer.append("timestamp=" + times);
-        }else {
-            buffer = new StringBuffer(payload);
-            buffer.append("&timestamp=" + times);
+            StringBuffer buffer = null;
+            //v2版本新增参数 timestamp/signature_method
+            if (StringUtils.isBlank(payload)) {
+                buffer = new StringBuffer();
+                buffer.append("timestamp=" + times);
+            } else {
+                buffer = new StringBuffer(payload);
+                buffer.append("&timestamp=" + times);
+            }
+            buffer.append("&signature_method=RSA&echostr=" + uuid);
+
+            sign = SdkUtil.getSignForRSA(buffer.toString(), apiKey, secret);
+
+        } else if (StringUtils.equalsIgnoreCase(method, Contant.SIGN_METHODS_SHA256)) {
+            //加密请求参数获取数字签名
+            String payload = original.url().query();
+
+            StringBuffer buffer = null;
+            //v2版本新增参数 timestamp/signature_method
+            if (StringUtils.isBlank(payload)) {
+                buffer = new StringBuffer();
+                buffer.append("timestamp=" + times);
+            } else {
+                buffer = new StringBuffer(payload);
+                buffer.append("&timestamp=" + times);
+            }
+            buffer.append("&signature_method=HmacSHA256&echostr=" + uuid);
+
+            sign = SdkUtil.getSignForHmacsha256(buffer.toString(), apiKey, secret);
         }
-        buffer.append("&signature_method=RSA&echostr="+uuid);
-
-        String sign = LBankJavaApiSdkUtil.getSign(buffer.toString(),apiKey,secret);
-
         HttpUrl signedUrl = original.url().newBuilder().
                 addQueryParameter("api_key", apiKey).
                 addQueryParameter("sign", sign).build();
         newRequestBuilder.url(signedUrl);
         Request newRequest = newRequestBuilder.build();
         return chain.proceed(newRequest);
+
     }
 
     @Override
@@ -94,11 +116,12 @@ public class AuthenticationInterceptor implements Interceptor {
         if (o == null || getClass() != o.getClass()) return false;
         final AuthenticationInterceptor that = (AuthenticationInterceptor) o;
         return Objects.equals(apiKey, that.apiKey) &&
-                Objects.equals(secret, that.secret);
+                Objects.equals(secret, that.secret) &&
+                Objects.equals(method, that.method);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(apiKey, secret);
+        return Objects.hash(apiKey, secret, method);
     }
 }

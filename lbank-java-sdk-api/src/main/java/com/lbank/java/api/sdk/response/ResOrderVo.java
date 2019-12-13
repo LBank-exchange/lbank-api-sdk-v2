@@ -1,6 +1,6 @@
 package com.lbank.java.api.sdk.response;
 
-import com.lbank.java.api.sdk.entity.Order;
+import com.lbank.java.api.sdk.module.Order;
 
 import java.io.Serializable;
 import java.util.List;

@@ -8,7 +8,7 @@ import LBank.OrdersMan as ord
 import LBank.AccountMan as ac
 import LBank.BasicDataMan as bd
 import LBank.MarketMan as ma
-
+from LBank.WebsocketMan import WebSocket
 
 if __name__=="__main__":
 
@@ -53,7 +53,7 @@ if __name__=="__main__":
     #accountMan.genSubKey()
 
     ####enlarge the duration of the subscribe key#####
-    #accountMan.validDuration(subscribeKey='')
+    #accountMan.refreshKey(subscribeKey='')
 
     ######close the subscribe key#######
     #accountMan.closeSubKey(subscribeKey = '')
@@ -108,5 +108,22 @@ if __name__=="__main__":
 
     ####get kline######
     #marketMan.getKline(symbol='eth_usdt', size=20, type='day1', time='1576135557318')
+
+    #######################################
+    #########websocket management##########
+    ######################################
+    # websocket = WebSocket()
+    #######websocket for order updation#####
+    # websocket.websocketOrderUpdation('eth_usdt')
+    #####websocket for trade######
+    # websocket.websocketTrade( 'eth_usdt' )
+    #####websocket for kbar######
+    # websocket.websocketKbar('eth_usdt')
+    ####websocket for incremental depth######
+    # websocket.websocketIncreDepth('eth_usdt')
+    ####websocket for depth#####
+    # websocket.websocketDepth('eth_usdt')
+    ####websocket for ticker#####
+    # websocket.webSocketTicker('eth_usdt')
 
 

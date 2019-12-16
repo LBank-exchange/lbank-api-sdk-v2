@@ -51,7 +51,7 @@ genSubKey()
 ```
 - enlarge the duration of the subscribe key
 ```python
-validDuration(subscribeKey='')
+refreshKey(subscribeKey='')
 ```
 
 - close the subscribe key

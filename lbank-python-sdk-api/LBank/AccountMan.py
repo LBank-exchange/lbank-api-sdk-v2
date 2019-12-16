@@ -28,11 +28,12 @@ class AccountMan:
         for key in d.keys():
             par[ key ] = d[ key ]
 
-        self.excuReq.ExcuRequests( par, str )
+        res=self.excuReq.ExcuRequests( par, str )
+        return res['data']
 
-    def validDuration(self, **d):
+    def refreshKey(self, **d):
 
-        str = self.validDuration.__name__
+        str = self.refreshKey.__name__
 
         par = {}
         for key in d.keys():
@@ -40,9 +41,10 @@ class AccountMan:
 
         self.excuReq.ExcuRequests( par, str )
 
+
     def closeSubKey(self, **d):
 
-        str = self.validDuration.__name__
+        str = self.refreshKey.__name__
 
         par = {}
         for key in d.keys():

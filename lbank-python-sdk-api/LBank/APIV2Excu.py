@@ -30,9 +30,10 @@ class APIV2Excu:
         url,me=self.config.get("URL",str).split(",")
         par["api_key"]=self.apiKey
         if self.signMethod=='RSA':
-            self.excuReq.excuteRequestsRSA( par=par, url=url, method=me, privKey=self.privKey )
+            res=self.excuReq.excuteRequestsRSA( par=par, url=url, method=me, privKey=self.privKey )
         else:
-            self.excuReq.excuteRequestsHmac(par=par,url=url,method=me,secrtkey=self.secrtkey)
+            res=self.excuReq.excuteRequestsHmac(par=par,url=url,method=me,secrtkey=self.secrtkey)
+        return res
 
 
 

@@ -64,6 +64,7 @@ class client:
         if res.status_code == 200:
             resp = res.json()
             print( resp )
+            return resp
         else:
             print( res.status_code )
 
@@ -98,6 +99,7 @@ class client:
         if res.status_code == 200:
             resp = res.json()
             print( resp )
+            return resp
         else:
             print( res.status_code )
 

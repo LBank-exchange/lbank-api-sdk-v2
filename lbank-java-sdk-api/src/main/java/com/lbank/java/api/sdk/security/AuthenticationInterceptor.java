@@ -51,7 +51,7 @@ public class AuthenticationInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Long times = System.currentTimeMillis();
-        //System.out.println(times);
+
         Request original = chain.request();
         String uuid = UUID.randomUUID().toString();
         //请求头Header增加三个固定参数，时间戳和签名方式和随机数（长度在30-40之间）
@@ -67,38 +67,23 @@ public class AuthenticationInterceptor implements Interceptor {
             return chain.proceed(original);
         }
         String sign = "";
+        //加密请求参数获取数字签名
+        String payload = original.url().query();
+
+        StringBuffer buffer = null;
+        //v2版本新增参数 timestamp/signature_method
+        if (StringUtils.isBlank(payload)) {
+            buffer = new StringBuffer();
+            buffer.append("timestamp=" + times);
+        } else {
+            buffer = new StringBuffer(payload);
+            buffer.append("&timestamp=" + times);
+        }
+        buffer.append("&echostr=" + uuid);
+        buffer.append("&signature_method=" + method);
         if (StringUtils.equalsIgnoreCase(method, Contant.SIGN_METHODS_RSA)) {
-            //加密请求参数获取数字签名
-            String payload = original.url().query();
-
-            StringBuffer buffer = null;
-            //v2版本新增参数 timestamp/signature_method
-            if (StringUtils.isBlank(payload)) {
-                buffer = new StringBuffer();
-                buffer.append("timestamp=" + times);
-            } else {
-                buffer = new StringBuffer(payload);
-                buffer.append("&timestamp=" + times);
-            }
-            buffer.append("&signature_method=RSA&echostr=" + uuid);
-
             sign = SdkUtil.getSignForRSA(buffer.toString(), apiKey, secret);
-
         } else if (StringUtils.equalsIgnoreCase(method, Contant.SIGN_METHODS_SHA256)) {
-            //加密请求参数获取数字签名
-            String payload = original.url().query();
-
-            StringBuffer buffer = null;
-            //v2版本新增参数 timestamp/signature_method
-            if (StringUtils.isBlank(payload)) {
-                buffer = new StringBuffer();
-                buffer.append("timestamp=" + times);
-            } else {
-                buffer = new StringBuffer(payload);
-                buffer.append("&timestamp=" + times);
-            }
-            buffer.append("&signature_method=HmacSHA256&echostr=" + uuid);
-
             sign = SdkUtil.getSignForHmacsha256(buffer.toString(), apiKey, secret);
         }
         HttpUrl signedUrl = original.url().newBuilder().

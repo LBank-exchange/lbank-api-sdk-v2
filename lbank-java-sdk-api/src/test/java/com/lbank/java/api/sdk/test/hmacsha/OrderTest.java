@@ -50,7 +50,6 @@ public class OrderTest extends BaseTest {
 
     @Test
     public void testGetOrderHistory() throws Exception {
-
         ResOrderHistoryVo ordersInfoHistory = service.getOrdersInfoHistory("usdt_btc", "1", "20", "");
         logger.info(ordersInfoHistory.toString());
 

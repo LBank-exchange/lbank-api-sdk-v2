@@ -10,6 +10,9 @@ public class Contant {
 
     public static final String BASE_URL = "https://www.lbkex.net/";
 
+    //wss://www.lbkex.net/ws/V3 默认端口就是443
+    public static final String WS_URL = "wss://www.lbkex.net:443/ws/V3/";
+
     public static final String SIGN_METHODS_RSA = "RSA";
 
     public static final String SIGN_METHODS_SHA256 = "HmacSHA256";

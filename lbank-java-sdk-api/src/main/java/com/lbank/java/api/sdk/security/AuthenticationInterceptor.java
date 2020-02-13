@@ -54,6 +54,7 @@ public class AuthenticationInterceptor implements Interceptor {
 
         Request original = chain.request();
         String uuid = UUID.randomUUID().toString();
+        uuid = uuid.replace("-", "");
         //请求头Header增加三个固定参数，时间戳和签名方式和随机数（长度在30-40之间）
         Request.Builder newRequestBuilder = original.newBuilder().
                 addHeader("timestamp", times + "").

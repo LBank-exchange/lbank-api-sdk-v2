@@ -1,9 +1,13 @@
 package com.lbank.java.api.sdk.test.hmacsha;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.lbank.java.api.sdk.response.*;
 import com.lbank.java.api.sdk.test.BaseTest;
 import org.junit.Test;
 
+import java.net.URLEncoder;
 import java.util.UUID;
 
 /**
@@ -23,6 +27,37 @@ public class OrderTest extends BaseTest {
             logger.info(createOrder.toString());
         }
     }
+
+
+    @Test
+    public void testBatchCreateOrder() throws Exception {
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("symbol","eth_btc");
+        jsonObject.put("type","sell");
+        jsonObject.put("price","0.6");
+        jsonObject.put("amount","1");
+        jsonObject.put("custom_id",UUID.randomUUID().toString());
+
+        JSONObject jsonObject2 = new JSONObject();
+        jsonObject2.put("symbol","eth_btc");
+        jsonObject2.put("type","sell");
+        jsonObject2.put("price","0.7");
+        jsonObject2.put("amount","1");
+        jsonObject2.put("custom_id",UUID.randomUUID().toString());
+
+        JSONArray array = new JSONArray();
+        array.add(jsonObject);
+        array.add(jsonObject2);
+
+        String orders = URLEncoder.encode(array.toJSONString(), "UTF-8");
+
+        ResBatchCreateOrderVo createOrder = service.batchCreateOrder(orders);
+        logger.info(createOrder.toString());
+    }
+
+
+
 
     @Test
     public void testCancelOrder() throws Exception {

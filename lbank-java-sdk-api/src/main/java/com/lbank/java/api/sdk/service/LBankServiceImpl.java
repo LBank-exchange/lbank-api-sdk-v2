@@ -52,6 +52,21 @@ public class LBankServiceImpl {
         return LBankJavaApiSdkServiceGenerator.executeSync(this.lBankJavaApiService.createOrder(symbol, type, price, amount,customId));
     }
 
+
+    /**
+     * 批量下单
+     *
+     * @param orders 多个下单参数拼接的json格式字符串
+     * @return
+     */
+    public ResBatchCreateOrderVo batchCreateOrder(String orders) throws Exception {
+        if (StringUtils.isEmpty(orders)) {
+            throw new Exception("orders参数为空");
+        }
+        return LBankJavaApiSdkServiceGenerator.executeSync(this.lBankJavaApiService.batchCreateOrder(orders));
+    }
+
+
     /**
      * 撤销订单
      *

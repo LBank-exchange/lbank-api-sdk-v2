@@ -36,6 +36,16 @@ public interface LBankJavaApiService {
     Call<ResCreateOrderVo> createOrder(@Query("symbol") String symbol, @Query("type") String type, @Query("price") String price, @Query("amount") String amount,@Query("custom_id") String customId);
 
     /**
+     * 批量下单
+     *
+     * @param orders 多个下单参数拼接的json格式字符串
+     * @return
+     */
+    @Headers("contentType:application/x-www-form-urlencoded")
+    @POST("/v2/batch_create_order.do")
+    Call<ResBatchCreateOrderVo> batchCreateOrder(@Query("orders") String orders);
+
+    /**
      * 撤销订单
      *
      * @param symbol   交易对

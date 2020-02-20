@@ -23,6 +23,16 @@ class Orders:
 
         self.excuReq.ExcuRequests(par,str)
 
+    def batchCreateOrders(self,**d):
+
+        str= self.batchCreateOrders.__name__
+
+        par={}
+        for key in d.keys():
+            par[key]=d[key]
+
+        self.excuReq.ExcuRequests(par,str)
+
     def cancelOrders(self,**d):
         str=self.cancelOrders.__name__
 

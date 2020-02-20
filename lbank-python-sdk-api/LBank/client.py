@@ -7,6 +7,7 @@
 import datetime
 import hashlib
 import random
+import string
 
 from configparser import ConfigParser
 import requests as req
@@ -37,7 +38,9 @@ class client:
         '''execute requests with RSA signature'''
         urlstr=self.baseUrl+url
 
-        randomstr = "".join( random.sample( 'abcdefghijklmnopqrstuvwxyz!@#$%^&*()', 35 ) )
+        num = string.ascii_letters + string.digits
+
+        randomstr = "".join( random.sample( num, 35 ) )
 
         t = str( datetime.datetime.now().timestamp() * 1000 ).split( "." )[ 0 ]
 

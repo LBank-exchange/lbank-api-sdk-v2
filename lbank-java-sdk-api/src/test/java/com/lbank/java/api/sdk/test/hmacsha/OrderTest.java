@@ -8,6 +8,7 @@ import com.lbank.java.api.sdk.test.BaseTest;
 import org.junit.Test;
 
 import java.net.URLEncoder;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -31,28 +32,15 @@ public class OrderTest extends BaseTest {
 
     @Test
     public void testBatchCreateOrder() throws Exception {
+        StringBuffer str = new StringBuffer("[");
+        str.append("{\"symbol\":\"eth_btc\",\"amount\":\"1\",\"price\":\"0.6\",\"custom_id\":\"\",\"type\":\"sell\"}");
+        str.append(",");
+        str.append("{\"symbol\":\"eth_btc\",\"amount\":\"1\",\"price\":\"0.7\",\"custom_id\":\"\",\"type\":\"sell\"}");
+        str.append("]");
 
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("symbol","eth_btc");
-        jsonObject.put("type","sell");
-        jsonObject.put("price","0.6");
-        jsonObject.put("amount","1");
-        jsonObject.put("custom_id",UUID.randomUUID().toString());
+        String orders = URLEncoder.encode(str.toString(), "UTF-8");
 
-        JSONObject jsonObject2 = new JSONObject();
-        jsonObject2.put("symbol","eth_btc");
-        jsonObject2.put("type","sell");
-        jsonObject2.put("price","0.7");
-        jsonObject2.put("amount","1");
-        jsonObject2.put("custom_id",UUID.randomUUID().toString());
-
-        JSONArray array = new JSONArray();
-        array.add(jsonObject);
-        array.add(jsonObject2);
-
-        String orders = URLEncoder.encode(array.toJSONString(), "UTF-8");
-
-        ResBatchCreateOrderVo createOrder = service.batchCreateOrder(orders);
+        List<ResCreateOrderVo> createOrder = service.batchCreateOrder(orders);
         logger.info(createOrder.toString());
     }
 

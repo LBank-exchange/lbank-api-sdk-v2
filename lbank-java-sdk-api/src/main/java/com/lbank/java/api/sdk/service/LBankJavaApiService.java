@@ -50,7 +50,7 @@ public interface LBankJavaApiService {
      */
     @Headers("contentType:application/x-www-form-urlencoded")
     @POST("/v2/batch_create_order.do")
-    Call<List<ResCreateOrderVo>> batchCreateOrder(@Query("orders") String orders);
+    Call<ResBatchCreateOrderVo> batchCreateOrder(@Query("orders") String orders);
 
     /**
      * 撤销订单

@@ -66,7 +66,7 @@ public class LBankServiceImpl {
      * @param customId 自定义ID
      * @return
      */
-    public List<ResCreateOrderVo> batchCreateOrder(String orders) throws Exception {
+    public ResBatchCreateOrderVo batchCreateOrder(String orders) throws Exception {
         if (StringUtils.isEmpty(orders)) {
             throw new Exception("orders参数为空");
         }

@@ -33,15 +33,19 @@ public class OrderTest extends BaseTest {
     @Test
     public void testBatchCreateOrder() throws Exception {
         StringBuffer str = new StringBuffer("[");
-        str.append("{\"symbol\":\"eth_btc\",\"amount\":\"1\",\"price\":\"0.6\",\"custom_id\":\"\",\"type\":\"sell\"}");
+        str.append("{\"symbol\":\"eth_btc\",\"amount\":\"1\",\"price\":\"0.73\",\"custom_id\":\"\",\"type\":\"sell\"}");
         str.append(",");
-        str.append("{\"symbol\":\"eth_btc\",\"amount\":\"1\",\"price\":\"0.7\",\"custom_id\":\"\",\"type\":\"sell\"}");
+        str.append("{\"symbol\":\"eth_btc\",\"amount\":\"1\",\"price\":\"0.72\",\"custom_id\":\"\",\"type\":\"sell\"}");
+        str.append(",");
+        str.append("{\"symbol\":\"eth_btc\",\"amount\":\"1\",\"price\":\"0.75\",\"custom_id\":\"\",\"type\":\"sell\"}");
+        str.append(",");
+        str.append("{\"symbol\":\"eth_btc\",\"amount\":\"10000\",\"price\":\"0.79\",\"custom_id\":\"\",\"type\":\"sell\"}");
         str.append("]");
 
         String orders = URLEncoder.encode(str.toString(), "UTF-8");
 
-        List<ResCreateOrderVo> createOrder = service.batchCreateOrder(orders);
-        logger.info(createOrder.toString());
+        ResBatchCreateOrderVo batchCreateOrderVo = service.batchCreateOrder(orders);
+        logger.info(batchCreateOrderVo.toString());
     }
 
 

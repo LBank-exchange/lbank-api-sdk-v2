@@ -42,8 +42,8 @@ public class OrderTest extends BaseTest {
 
         String orders = URLEncoder.encode(str.toString(), "UTF-8");
 
-        List<ResCreateOrderVo> createOrder = service.batchCreateOrder(orders);
-        logger.info(createOrder.toString());
+        ResBatchCreateOrderVo batchCreateOrderVo = service.batchCreateOrder(orders);
+        logger.info(batchCreateOrderVo.toString());
     }
 
 

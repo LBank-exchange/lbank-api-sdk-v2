@@ -1,9 +1,8 @@
 package com.lbank.java.api.sdk.response;
 
-import com.lbank.java.api.sdk.module.CreateOrder;
-
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @program: lbank_api_v2
@@ -31,7 +30,7 @@ public class ResBatchCreateOrderVo implements Serializable {
     /**
      * 返回数据结构
      */
-    private List<CreateOrder> data;
+    private List<ResCreateOrderVo> data;
 
 
     public Boolean getResult() {
@@ -58,11 +57,11 @@ public class ResBatchCreateOrderVo implements Serializable {
         this.ts = ts;
     }
 
-    public List<CreateOrder> getData() {
+    public List<ResCreateOrderVo> getData() {
         return data;
     }
 
-    public void setData(List<CreateOrder> data) {
+    public void setData(List<ResCreateOrderVo> data) {
         this.data = data;
     }
 

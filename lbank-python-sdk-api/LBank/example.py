@@ -21,13 +21,13 @@ if __name__=="__main__":
     #orderMan.createOrders(symbol='lbk_usdt',type='buy',price=0.0222,amount=10,customer_id='')
 
     ###batch create orders#####
-    list = []
-
-    list.append({"symbol":'lbk_usdt', "type":'buy', "price":0.0222, "amount":10, "custom_id":''})
-    list.append({"symbol":'lbk_usdt', "type":'buy', "price":0.0222, "amount":20, "custom_id":''})
-
-    res = json.dumps(list)
-    orderMan.batchCreateOrders(orders = res)
+    # list = []
+    #
+    # list.append({"symbol":'lbk_usdt', "type":'buy', "price":0.0222, "amount":10, "custom_id":''})
+    # list.append({"symbol":'lbk_usdt', "type":'buy', "price":0.0222, "amount":20, "custom_id":''})
+    #
+    # res = json.dumps(list)
+    # orderMan.batchCreateOrders(orders = res)
 
     ###cancel order#####
     #orderMan.cancelOrders(symbol='lbk_usdt',order_id='')

@@ -23,8 +23,8 @@ if __name__=="__main__":
     ###batch create orders#####
     list = []
 
-    list.append({"symbol":'lbk_usdt', "type":'buy', "price":0.0222, "amount":10, "customer_id":''})
-    list.append({"symbol":'lbk_usdt', "type":'buy', "price":0.0222, "amount":20, "customer_id":''})
+    list.append({"symbol":'lbk_usdt', "type":'buy', "price":0.0222, "amount":10, "custom_id":''})
+    list.append({"symbol":'lbk_usdt', "type":'buy', "price":0.0222, "amount":20, "custom_id":''})
 
     res = json.dumps(list)
     orderMan.batchCreateOrders(orders = res)

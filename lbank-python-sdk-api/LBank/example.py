@@ -16,7 +16,6 @@ if __name__=="__main__":
     ########### Order #############
     ###############################
     orderMan= ord.Orders()
-
     ###create order#####
     #orderMan.createOrders(symbol='lbk_usdt',type='buy',price=0.0222,amount=10,customer_id='')
 

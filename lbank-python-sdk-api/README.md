@@ -10,6 +10,10 @@
 ```python
 createOrders(symbol='',type='',price=,amount=,customer_id='')
 ```
+- batch create order
+```python
+batchCreateOrders(orders = '')
+```
 - cancel order by orderID
 ```python
 cancelOrders(symbol='',order_id='')

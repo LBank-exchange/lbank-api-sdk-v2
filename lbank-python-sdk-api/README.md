@@ -2,7 +2,7 @@
 
 ---
 [TOC]
-用户需要下constant.ini中配置APIKEY，PriveKey（RSA模式），SECRTKEY（hamcSHA256模式）
+用户需要下constant.ini中配置APIKEY，PriveKey（RSA模式），SECRTKEY（hmacSHA256模式）
 
 ## Order
 

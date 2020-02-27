@@ -2,7 +2,7 @@
 
 ---
 [TOC]
-用户需要在Constant.java中配置API_KEY，SECRET_KEY（RSA模式或者hamcSHA256模式）
+用户需要在Constant.java中配置API_KEY，SECRET_KEY（RSA模式或者hmacSHA256模式）
 
 ## Order
 

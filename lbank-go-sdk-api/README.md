@@ -34,6 +34,10 @@ LBANK_SIGN_METH 		   = LBANK_RSA_SIGN_METHOD
 ```golang
 CreateOrder(symbol, typ, price, amount, custom_id string)
 ```
+- create batch order
+```golang
+CreateBatchOrder(orders string)
+```
 - cancel order by orderID
 ```golang
 CancelOrder(symbol, order_id string)

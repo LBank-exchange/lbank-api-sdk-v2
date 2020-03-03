@@ -230,3 +230,28 @@ func (cli *Client) OrdersInfoNoDeal(symbol, current_page, page_length string) (*
 
 	return &p, nil
 }
+
+/*
+批量下单接口
+
+POST 请求
+POST /v2/batch_create_order.do
+*/
+func (cli *Client) CreateBatchOrder(orders string) (*map[string]interface{}, error) {
+	p := map[string]interface{}{}
+
+	batchParams := make(map[string]string)
+
+	batchParams["orders"] = orders
+
+	res, err := cli.CombinePOSTParams(&batchParams)
+	if err != nil {
+		return nil, err
+	}
+	urlPath := cli.BuildParams(constant.ORDER_BATCH_CREATE_ORDER, batchParams)
+	if _, err := cli.Request(constant.POST, urlPath, res, &p); err != nil {
+		return nil, err
+	}
+
+	return &p, nil
+}

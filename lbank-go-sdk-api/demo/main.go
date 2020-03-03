@@ -168,6 +168,43 @@ func main() {
 	//fmt.Println(string(result))
 	//fmt.Println("-----------------------------------------------------")
 
+	////9. 批量下单
+	//fmt.Println("26. 批量下单")
+	//type orderParams struct {
+	//	Symbol 		string 		`json:"symbol"`
+	//	Typ			string 		`json:"type"`
+	//	Price 		string  	`json:"price"`
+	//	Amount 		string 		`json:"amount"`
+	//	CustomerId 	string 		`json:"customer_id"`
+	//}
+	//
+	//var paramsList []orderParams
+	//
+	//paramsList = append(paramsList,orderParams{
+	//	Symbol:"lbk_usdt",
+	//	Typ:"buy",
+	//	Price:"0.05",
+	//	Amount:"100",
+	//	CustomerId:"",
+	//})
+	//paramsList = append(paramsList, orderParams{
+	//	Symbol:"lbk_usdt",
+	//	Typ:"buy",
+	//	Price:"0.05",
+	//	Amount:"100",
+	//})
+	//
+	//params, err := json.Marshal(paramsList)
+	//if err != nil {
+	//	fmt.Println("参数组合错误，error = ", err)
+	//	panic(err)
+	//}
+	//
+	//res, _ := client.CreateBatchOrder(string(params))
+	//result, _ :=json.Marshal(res)
+	//fmt.Println(string(result))
+	//fmt.Println("-----------------------------------------------------")
+	
 	//市场相关
 	//1. 获取币币行情
 	//fmt.Println("21. 获取币币行情")

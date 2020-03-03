@@ -172,7 +172,7 @@ func main() {
 	//fmt.Println("26. 批量下单")
 	//type orderParams struct {
 	//	Symbol 		string 		`json:"symbol"`
-	//	Typ			string 		`json:"type"`
+	//	Typ		string 		`json:"type"`
 	//	Price 		string  	`json:"price"`
 	//	Amount 		string 		`json:"amount"`
 	//	CustomerId 	string 		`json:"customer_id"`

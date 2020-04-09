@@ -62,6 +62,10 @@ TransactionHistory(symbol, typ, start_date, end_date, from, direct, size string)
 ```golang
 OrdersInfoNoDeal(symbol, current_page, page_length string)
 ```
+- create batch order
+```golang
+CreateBatchOrder(orders string)
+```
 
 
 ## Account

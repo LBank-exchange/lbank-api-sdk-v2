@@ -171,8 +171,10 @@ func (client *Client)CombinePOSTParams(paramsInfo *map[string]string) (map[strin
 	apiParams = append(apiParams, constant.TIME_STAMP + "=" + timestamp)
 
 	var echostr string
+	var tmpEcho string
 	tmpStr, _ := uuid.NewRandom()
-	echostr = tmpStr.String()
+	tmpEcho = tmpStr.String()
+	echostr = strings.Replace(tmpEcho, "-", strconv.Itoa(rand.Int()%10), -1)
 
 	apiParams = append(apiParams, constant.ECHOSTR + "=" + echostr)
 	var sign string

@@ -28,7 +28,9 @@ const (
 	ORDER_TRANSACTION_DETAIL		 = "/v2/order_transaction_detail.do"
 	ORDER_TRANSACTION_HISTORY		 = "/v2/transaction_history.do"
 	ORDER_ORDERS_INFO_NO_DEAL  		 = "/v2/orders_info_no_deal.do"
-
+	/*新增批量下单接口*/
+	ORDER_BATCH_CREATE_ORDER 		 = "/v2/batch_create_order.do"
+	
 	//提币相关
 	WITHDRAW		= "/v2/withdraw.do"
 	WITHDRAW_CANCEL = "/v2/withdrawCancel.do"

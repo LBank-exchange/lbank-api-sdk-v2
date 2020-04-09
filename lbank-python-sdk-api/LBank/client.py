@@ -75,7 +75,8 @@ class client:
         '''execute requests with HmacSHA256 signature'''
         urlstr = self.baseUrl + url
 
-        randomstr = "".join( random.sample( 'abcdefghijklmnopqrstuvwxyz!@#$%^&*()', 35 ) )
+        num = string.ascii_letters + string.digits
+        randomstr = "".join(random.sample(num, 35))
 
         t = str( datetime.datetime.now().timestamp() * 1000 ).split( "." )[ 0 ]
 

@@ -11,7 +11,7 @@
         <com.squareup.retrofit2.version>2.3.0</com.squareup.retrofit2.version>
         <netty.version>4.1.36.Final</netty.version>
         <guava.version>27.1-jre</guava.version>
-        <compress.version>1.18</compress.version>
+        <compress.version>1.19</compress.version>
         <codec.version>1.12</codec.version>
     </properties>
     <dependencies>

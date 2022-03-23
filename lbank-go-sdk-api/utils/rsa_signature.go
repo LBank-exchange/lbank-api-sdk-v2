@@ -56,7 +56,7 @@ func formatKey(raw, prefix, suffix string) (result []byte) {
 }
 
 //获取用户密钥
-func ParsePKCS1PrivateKey(data []byte) ( *rsa.PrivateKey,  error) {
+func ParsePKCS1PrivateKey(data []byte) (*rsa.PrivateKey, error) {
 	var block *pem.Block
 	block, _ = pem.Decode(data)
 	if block == nil {
@@ -71,7 +71,7 @@ func ParsePKCS1PrivateKey(data []byte) ( *rsa.PrivateKey,  error) {
 	return privateKey.(*rsa.PrivateKey), err
 }
 
-func RSASign( params string, privateKey *rsa.PrivateKey ) string {
+func RSASign(params string, privateKey *rsa.PrivateKey) string {
 	//对参数使用MD5进行签名运算
 	md5Hash := md5.Sum([]byte(params))
 	//转换小写字母为大写
@@ -97,12 +97,12 @@ func FormatStringBySign(params []string) string {
 	//对字符串进行排序
 	sort.Strings(params)
 	//组合参数字符串
-	result = strings.Join(params,"&")
+	result = strings.Join(params, "&")
 
 	return result
 }
 
-func GetSign(secret string, params []string) (string ,error) {
+func GetSign(secret string, params []string) (string, error) {
 	if secret == "" {
 		return "", errors.New("The Secret not NULL")
 	}
@@ -111,5 +111,5 @@ func GetSign(secret string, params []string) (string ,error) {
 		return "", err
 	}
 
-	return RSASign(FormatStringBySign(params),privateKey), nil
+	return RSASign(FormatStringBySign(params), privateKey), nil
 }

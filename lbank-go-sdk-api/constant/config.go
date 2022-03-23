@@ -23,11 +23,11 @@ type Config struct {
 //需要初始化时填写相关的配置选项
 func InitConfig() *Config {
 	return &Config{
-		Endpoint: LBANK_REST_API_ENDPOINT,
-		WSEndpoint: LBANK_WS_ENDPOINT,
+		Endpoint:        LBANK_REST_API_ENDPOINT,
+		WSEndpoint:      LBANK_WS_ENDPOINT,
 		SignatureMethod: LBANK_SIGN_METH,
-		ApiKey: LBANK_REST_API_KEY,
-		SecretKey: LBANK_REST_API_SECRETKEY,
-		IsPrint:LBANK_IS_PRINT_REQUEST,
+		ApiKey:          LBANK_REST_API_KEY,
+		SecretKey:       LBANK_REST_API_SECRETKEY,
+		IsPrint:         LBANK_IS_PRINT_REQUEST,
 	}
 }

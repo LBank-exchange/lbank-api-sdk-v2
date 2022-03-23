@@ -9,7 +9,7 @@ import (
 )
 
 //HTTP请求头
-func Headers(request *http.Request, signmethod ,timestamp, echostr string) {
+func Headers(request *http.Request, signmethod, timestamp, echostr string) {
 	request.Header.Set(constant.CONTENT_TYPE, constant.APPLICATION_URLENCODE)
 	request.Header.Add(constant.SIGNATURE_METHOD, signmethod)
 	request.Header.Add(constant.TIME_STAMP, timestamp)
@@ -18,7 +18,7 @@ func Headers(request *http.Request, signmethod ,timestamp, echostr string) {
 
 //配置检查
 func CheckConfig(config *constant.Config) bool {
-	if config.SecretKey == "" || config.ApiKey == "" || config.SignatureMethod == ""{
+	if config.SecretKey == "" || config.ApiKey == "" || config.SignatureMethod == "" {
 		return false
 	}
 	if config.Endpoint == "" && config.WSEndpoint == "" {
@@ -28,7 +28,7 @@ func CheckConfig(config *constant.Config) bool {
 }
 
 func CheckTimeAndEchostr(params map[string]string) bool {
-	if _, ok :=params[constant.TIME_STAMP]; !ok {
+	if _, ok := params[constant.TIME_STAMP]; !ok {
 		return false
 	}
 	if _, ok := params[constant.ECHOSTR]; !ok {
@@ -40,14 +40,12 @@ func CheckTimeAndEchostr(params map[string]string) bool {
 //参数构建
 func SignParams(params map[string]string, sigmethod string) []string {
 	var result []string
-	result = append(result, constant.SIGNATURE_METHOD + "=" + sigmethod)
+	result = append(result, constant.SIGNATURE_METHOD+"="+sigmethod)
 	for key, value := range params {
 		result = append(result, key+"="+value)
 	}
 	return result
 }
-
-
 
 //常用方法
 func IntToString(arg int) string {

@@ -1,6 +1,4 @@
 # -*- coding:utf-8 -*-
-# Author: yongli.luo
-# Date: 2019-07-10 13:34
 # project name: project
 # file name : TestWebsocket
 import configparser

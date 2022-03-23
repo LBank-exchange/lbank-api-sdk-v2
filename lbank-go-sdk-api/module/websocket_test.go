@@ -7,10 +7,10 @@ import (
 
 func TestLbankWSAgent_HandleResponse(t *testing.T) {
 	agent := LbankWSAgent{}
-	agent.Start( )
+	agent.Start()
 
 	//订阅K线数据
-	sub := NewSubscribeKbar("subscribe", "5min", "eth_btc","","","")
+	sub := NewSubscribeKbar("subscribe", "5min", "eth_btc", "", "", "")
 	agent.Subscribe(StructToJsonString(sub))
 	////取消订阅K线数据
 	//sub := NewSubscribeKbar("unsubscribe", "5min", "eth_btc","","","")

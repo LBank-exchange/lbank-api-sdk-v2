@@ -1,6 +1,4 @@
 # -*- coding:utf-8 -*-
-# Author: yongli.luo
-# Date: 2019-12-10 16:15
 # project name: project
 # file name : util
 import hashlib

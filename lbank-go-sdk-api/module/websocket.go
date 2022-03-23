@@ -16,11 +16,11 @@ import (
 )
 
 type LbankWSAgent struct {
-	baseUrl 		string
-	config 			*constant.Config
-	conn 			*websocket.Conn
+	baseUrl string
+	config  *constant.Config
+	conn    *websocket.Conn
 
-	wsResponse 		chan interface{}
+	wsResponse chan interface{}
 
 	stopCh   chan interface{}
 	errCh    chan error
@@ -32,7 +32,7 @@ type LbankWSAgent struct {
 	processMut sync.Mutex
 }
 
-func (lbank *LbankWSAgent) Start( ) error {
+func (lbank *LbankWSAgent) Start() error {
 	config := constant.InitConfig()
 	endpoint := config.WSEndpoint
 	if strings.HasSuffix(config.Endpoint, "/") {
@@ -84,7 +84,7 @@ func (lbank *LbankWSAgent) work() {
 		select {
 		case <-ticker.C:
 			lbank.keepalive()
-		case rsp := <- lbank.wsResponse:
+		case rsp := <-lbank.wsResponse:
 			lbank.HandleResponse(rsp)
 		case <-lbank.stopCh:
 			return
@@ -133,7 +133,7 @@ func (lbank *LbankWSAgent) receive() {
 		}
 
 		switch rsp.(type) {
-		case string :
+		case string:
 			break
 		case interface{}:
 			lbank.wsResponse <- rsp
@@ -158,7 +158,7 @@ func (lbank *LbankWSAgent) finalize() error {
 	return nil
 }
 
-func (lbank *LbankWSAgent)Subscribe(message string) error {
+func (lbank *LbankWSAgent) Subscribe(message string) error {
 	lbank.processMut.Lock()
 	defer lbank.processMut.Unlock()
 
@@ -171,7 +171,6 @@ func (lbank *LbankWSAgent)Subscribe(message string) error {
 
 	return nil
 }
-
 
 func (lbank *LbankWSAgent) keepalive() {
 	lbank.Ping()
@@ -189,9 +188,9 @@ func (lbank *LbankWSAgent) Stop() error {
 
 func (lbank *LbankWSAgent) Ping() {
 	randId, _ := uuid.NewRandom()
-	msg := PingMessage {
-		Action:"ping",
-		Ping:randId.String(),
+	msg := PingMessage{
+		Action: "ping",
+		Ping:   randId.String(),
 	}
 	log.Printf("Send Msg: %s", msg)
 	lbank.conn.WriteMessage(websocket.TextMessage, []byte(StructToJsonString(msg)))

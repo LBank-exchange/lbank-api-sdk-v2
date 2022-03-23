@@ -1,6 +1,4 @@
 # -*- coding:utf-8 -*-
-# Author: yongli.luo
-# Date: 2019-12-12 13:44
 # project name: project
 # file name : AccountMan
 from LBank.APIV2Excu import APIV2Excu

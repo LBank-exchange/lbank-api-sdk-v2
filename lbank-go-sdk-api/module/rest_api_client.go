@@ -5,8 +5,9 @@ import (
 	"fmt"
 	"github.com/google/uuid"
 	"github.com/lbank-go-sdk-api/constant"
-	"github.com/lbank-go-sdk-api/utils"
 	"io/ioutil"
+	"lbank-go-sdk-api/utils"
+	"math/rand"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -15,18 +16,17 @@ import (
 )
 
 type Client struct {
-	Config 		constant.Config
-	HttpClient 	*http.Client
+	Config     constant.Config
+	HttpClient *http.Client
 }
 
 type ApiMessage struct {
-	Code 		int 	`json:"code"`
-	Message     string 	`json:"message"`
+	Code    int    `json:"code"`
+	Message string `json:"message"`
 }
 
-
 //获取新客户端
-func NewLbankClient( ) *Client {
+func NewLbankClient() *Client {
 	var client Client
 	config := constant.InitConfig()
 	client.Config = *config
@@ -111,7 +111,7 @@ func printRequest(config constant.Config, request *http.Request, body string, pr
 	if config.SecretKey != "" {
 		fmt.Println("  Secret-Key: " + config.SecretKey)
 	}
-	fmt.Println("  Request("  + utils.IsoTime() + "):")
+	fmt.Println("  Request(" + utils.IsoTime() + "):")
 	fmt.Println("\tUrl: " + request.URL.String())
 	fmt.Println("\tMethod: " + strings.ToUpper(request.Method))
 	if len(request.Header) > 0 {
@@ -147,7 +147,7 @@ func (client *Client) BuildParams(requestPath string, params map[string]string) 
 	return requestPath + "?" + urlParams.Encode()
 }
 
-func (client *Client)CombineGETParams(paramsInfo *map[string]string) (map[string]string, error) {
+func (client *Client) CombineGETParams(paramsInfo *map[string]string) (map[string]string, error) {
 	var result = make(map[string]string)
 	tmp := time.Now().UnixNano() / 1000000
 	timestamp := strconv.FormatUint(uint64(tmp), 10)
@@ -156,11 +156,11 @@ func (client *Client)CombineGETParams(paramsInfo *map[string]string) (map[string
 	echostr = tmpStr.String()
 	//返回签名请求头包含参数
 	result[constant.TIME_STAMP] = timestamp
-	result[constant.ECHOSTR]    = echostr
+	result[constant.ECHOSTR] = echostr
 	return result, nil
 }
 
-func (client *Client)CombinePOSTParams(paramsInfo *map[string]string) (map[string]string, error) {
+func (client *Client) CombinePOSTParams(paramsInfo *map[string]string) (map[string]string, error) {
 	var result = make(map[string]string)
 
 	(*paramsInfo)[constant.API_KEY] = client.Config.ApiKey
@@ -168,7 +168,7 @@ func (client *Client)CombinePOSTParams(paramsInfo *map[string]string) (map[strin
 	tmp := time.Now().UnixNano() / 1000000
 	timestamp := strconv.FormatUint(uint64(tmp), 10)
 	apiParams := utils.SignParams(*paramsInfo, client.Config.SignatureMethod)
-	apiParams = append(apiParams, constant.TIME_STAMP + "=" + timestamp)
+	apiParams = append(apiParams, constant.TIME_STAMP+"="+timestamp)
 
 	var echostr string
 	var tmpEcho string
@@ -176,7 +176,7 @@ func (client *Client)CombinePOSTParams(paramsInfo *map[string]string) (map[strin
 	tmpEcho = tmpStr.String()
 	echostr = strings.Replace(tmpEcho, "-", strconv.Itoa(rand.Int()%10), -1)
 
-	apiParams = append(apiParams, constant.ECHOSTR + "=" + echostr)
+	apiParams = append(apiParams, constant.ECHOSTR+"="+echostr)
 	var sign string
 	var err error
 	if client.Config.SignatureMethod == constant.LBANK_RSA_SIGN_METHOD {
@@ -197,6 +197,6 @@ func (client *Client)CombinePOSTParams(paramsInfo *map[string]string) (map[strin
 
 	//返回签名请求头包含参数
 	result[constant.TIME_STAMP] = timestamp
-	result[constant.ECHOSTR]    = echostr
+	result[constant.ECHOSTR] = echostr
 	return result, nil
 }

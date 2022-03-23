@@ -1,6 +1,4 @@
 # -*- coding:utf-8 -*-
-# Author: yongli.luo
-# Date: 2019-12-12 13:47
 # project name: project
 # file name : BaseConfigMan
 from LBank.APIV2Excu import APIV2Excu

@@ -3,14 +3,14 @@ package constant
 import "errors"
 
 const (
-	SUBSCRIBE_KBAR 		= "kbar"
-	SUBSCRIBE_TICK 		= "tick"
-	SUBSCRIBE_DEPTH 	= "depth"
-	SUBSCRIBE_TRADE     = "trade"
+	SUBSCRIBE_KBAR  = "kbar"
+	SUBSCRIBE_TICK  = "tick"
+	SUBSCRIBE_DEPTH = "depth"
+	SUBSCRIBE_TRADE = "trade"
 
 	SUBSCRIBE_ORDER_UPDATE = "orderUpdate"
 
-	WEBSOCKET_VERSION  = "/ws/V3/"
+	WEBSOCKET_VERSION = "/ws/V3/"
 )
 
 var (

@@ -4,6 +4,10 @@
 [TOC]
 用户需要下constant.ini中配置APIKEY，PriveKey（RSA模式），SECRTKEY（hmacSHA256模式）
 
+运行环境：python3.8以上版本
+
+运行核心依赖包：Crypto/requests
+
 ## Order
 
 - create order

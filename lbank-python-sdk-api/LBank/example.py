@@ -3,6 +3,7 @@
 # file name : run
 
 import LBank.BasicDataMan as bd
+import LBank.AccountMan as ac
 import LBank.new_v2_inter.WalletMan as wm
 import LBank.new_v2_inter.MarketMan as mm
 import LBank.new_v2_inter.OrderMan as om
@@ -49,10 +50,10 @@ if __name__=="__main__":
     ###############################
     ########### Account ###########
     ###############################
-    # accountMan=ac.AccountMan()
+    accountMan=ac.AccountMan()
 
     ####get user info ########
-    # accountMan.getUserInfo()
+    accountMan.getUserInfo()
 
     #####get subscribe keys ######
     #accountMan.genSubKey()
@@ -156,7 +157,7 @@ if __name__=="__main__":
     # market.getPrice(symbol = '')
     # market.getBookTicker(symbol = 'btc_usdt')
 
-    order = om.OrderMan()
+    # order = om.OrderMan()
     # order.getCreate_order_test(symbol = 'lbk_usdt',type = 'buy',price = '0.026',amount = '10', custom_id = '')
     # order.getCreate_order(symbol = 'lbk_usdt',type = 'buy',price = '0.022',amount = '10', custom_id = '')
     # order.getCancel_orderV2(symbol = 'lbk_usdt', orderId = '3f05d548-8d4d-4034-b326-cf8de25a9caf', origClientOrderId = '')
@@ -165,4 +166,4 @@ if __name__=="__main__":
     # order.getOrders_info_no_deal(symbol = 'lbk_usdt' ,current_page = '1' ,page_length = '100')
     # order.getOrders_info_history(symbol = 'lbk_usdt', current_page = '1',page_length = '100', status = '')
     # order.getUser_info_account()
-    order.getTransaction_history(symbol = 'lbk_usdt', startTime = '', endTime = '',fromId = '', limit = '')
+    # order.getTransaction_history(symbol = 'lbk_usdt', startTime = '', endTime = '',fromId = '', limit = '')

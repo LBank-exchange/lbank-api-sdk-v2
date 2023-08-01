@@ -17,7 +17,7 @@ public interface WebSocketListener {
      * Indicates that a complete WebSocket connection has been established,
      * and we are ready to send/receive data.
      *
-     * @param ws The WebSocket instance this event is occuring on.
+     * @param ws The WebSocket instance this event is occurring on.
      */
     void onWebsocketOpen(WebSocket ws);
 
@@ -35,14 +35,14 @@ public interface WebSocketListener {
      * Called after WebSocket#close is explicity called, or when the
      * other end of the WebSocket connection is closed.
      *
-     * @param ws The WebSocket instance this event is occuring on.
+     * @param ws The WebSocket instance this event is occurring on.
      */
     void onWebsocketClose(WebSocket ws, int code);
 
     /**
      * Called when a pong frame is received.
      *
-     * @param ws The WebSocket instance this event is occuring on.
+     * @param ws The WebSocket instance this event is occurring on.
      **/
     void onWebsocketPong(WebSocket ws);
 }

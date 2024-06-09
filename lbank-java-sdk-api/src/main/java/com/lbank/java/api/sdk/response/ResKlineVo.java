@@ -2,6 +2,7 @@ package com.lbank.java.api.sdk.response;
 
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Map;
 
 /**
@@ -26,6 +27,11 @@ public class ResKlineVo implements Serializable {
      * 返回时间戳
      */
     private Long ts;
+
+    /**
+     * 返回错误信息
+     */
+    private String msg;
 
     /**
      * 返回数据结构
@@ -65,13 +71,22 @@ public class ResKlineVo implements Serializable {
         this.data = data;
     }
 
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
     @Override
     public String toString() {
         return "ResponseVo{" +
                 "result=" + result +
                 ", error_code='" + error_code + '\'' +
                 ", ts=" + ts +
-                ", data=" + data +
+                ", msg='" + msg + '\'' +
+                ", data=" + Arrays.toString(data) +
                 '}';
     }
 }

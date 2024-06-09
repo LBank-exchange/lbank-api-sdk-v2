@@ -27,6 +27,11 @@ public class ResUserInfoVo implements Serializable {
     private Long ts;
 
     /**
+     * 返回错误信息
+     */
+    private String msg;
+
+    /**
      * 返回数据结构
      */
     private Map<String,Map<String,String>> data;
@@ -64,12 +69,21 @@ public class ResUserInfoVo implements Serializable {
         this.data = data;
     }
 
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
     @Override
     public String toString() {
         return "ResponseVo{" +
                 "result=" + result +
                 ", error_code='" + error_code + '\'' +
                 ", ts=" + ts +
+                ", msg='" + msg + '\'' +
                 ", data=" + data +
                 '}';
     }

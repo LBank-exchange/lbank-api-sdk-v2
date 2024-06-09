@@ -30,6 +30,11 @@ public class ResCustomerTradeFeeVo {
     private Long ts;
 
     /**
+     * 返回错误信息
+     */
+    private String msg;
+
+    /**
      * 返回数据结构
      */
     private List<CustomerTradeFee> data;
@@ -74,12 +79,22 @@ public class ResCustomerTradeFeeVo {
         this.code = code;
     }
 
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
     @Override
     public String toString() {
         return "ResCustomerTradeFeeVo{" +
                 "result=" + result +
                 ", error_code='" + error_code + '\'' +
+                ", code='" + code + '\'' +
                 ", ts=" + ts +
+                ", msg='" + msg + '\'' +
                 ", data=" + data +
                 '}';
     }

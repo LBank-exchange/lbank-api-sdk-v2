@@ -27,6 +27,11 @@ public class ResCancelOrderBySymbolVo {
     private Long ts;
 
     /**
+     * 返回错误信息
+     */
+    private String msg;
+
+    /**
      * 返回数据结构
      */
     private List<CancelOrder> data;
@@ -64,12 +69,22 @@ public class ResCancelOrderBySymbolVo {
         this.data = data;
     }
 
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
     @Override
     public String toString() {
         return "ResCancelOrderBySymbolVo{" +
                 "result=" + result +
                 ", error_code='" + error_code + '\'' +
                 ", ts=" + ts +
+                ", msg='" + msg + '\'' +
                 ", data=" + data +
                 '}';
     }

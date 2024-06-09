@@ -31,6 +31,11 @@ public class ResAssetDetailVo implements Serializable {
     private Long ts;
 
     /**
+     * 返回错误信息
+     */
+    private String msg;
+
+    /**
      * 返回数据结构
      */
     private Map<String, AssetDetail> data;
@@ -75,6 +80,15 @@ public class ResAssetDetailVo implements Serializable {
         this.code = code;
     }
 
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
     @Override
     public String toString() {
         return "ResAssetDetailVo{" +
@@ -82,6 +96,7 @@ public class ResAssetDetailVo implements Serializable {
                 ", error_code='" + error_code + '\'' +
                 ", code='" + code + '\'' +
                 ", ts=" + ts +
+                ", msg='" + msg + '\'' +
                 ", data=" + data +
                 '}';
     }

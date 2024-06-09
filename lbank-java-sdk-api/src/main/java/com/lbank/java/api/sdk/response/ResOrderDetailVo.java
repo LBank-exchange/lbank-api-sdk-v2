@@ -29,6 +29,11 @@ public class ResOrderDetailVo implements Serializable {
     private Long ts;
 
     /**
+     * 返回错误信息
+     */
+    private String msg;
+
+    /**
      * 返回数据结构
      */
     private List<UserTransaction> data;
@@ -66,12 +71,21 @@ public class ResOrderDetailVo implements Serializable {
         this.data = data;
     }
 
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
     @Override
     public String toString() {
         return "ResponseVo{" +
                 "result=" + result +
                 ", error_code='" + error_code + '\'' +
                 ", ts=" + ts +
+                ", msg='" + msg + '\'' +
                 ", data=" + data +
                 '}';
     }

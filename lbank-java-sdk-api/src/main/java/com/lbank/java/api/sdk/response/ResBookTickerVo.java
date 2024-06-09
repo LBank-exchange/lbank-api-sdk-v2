@@ -29,6 +29,11 @@ public class ResBookTickerVo implements Serializable {
     private Long ts;
 
     /**
+     * 返回错误信息
+     */
+    private String msg;
+
+    /**
      * 返回数据结构
      */
     private BookTicker data;
@@ -65,12 +70,21 @@ public class ResBookTickerVo implements Serializable {
         this.data = data;
     }
 
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
     @Override
     public String toString() {
         return "ResBookTickerVo{" +
                 "result=" + result +
                 ", error_code='" + error_code + '\'' +
                 ", ts=" + ts +
+                ", msg='" + msg + '\'' +
                 ", data=" + data +
                 '}';
     }
